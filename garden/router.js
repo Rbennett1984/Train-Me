@@ -6,10 +6,10 @@ const router = express.Router();
 const passport = require('passport');
 const bodyParser = require('body-parser');
 const jsonParser = bodyParser.json();
-const {Garden} = require('./models');
+const {Workout} = require('./models');
 
 router.get('/', passport.authenticate('jwt', {session: false}), (req, res) => {
-	Garden
+	Workout
 		.find()
 		.exec()
 		.then(plants => {
@@ -21,11 +21,11 @@ router.get('/', passport.authenticate('jwt', {session: false}), (req, res) => {
 });
 
 router.get('/user/:user', passport.authenticate('jwt', {session: false}), (req, res) => {
-	Garden
+	Workout
 		.find({user: `${req.params.user}`})
 		.exec()
-		.then(plants => {
-			res.status(200).json(plants)
+		.then(workout => {
+			res.status(200).json(workout)
 		})
 		.catch(err => {
 			res.status(500).json({message: 'Internal server error'});
@@ -33,10 +33,10 @@ router.get('/user/:user', passport.authenticate('jwt', {session: false}), (req, 
 });
 
 router.get('/:id', (req, res) => {
-	Garden
+	Workout
 		.findById(req.params.id)
 		.exec()
-		.then(plant => res.status(200).json(plant))
+		.then(workout => res.status(200).json(plant))
 		.catch(err => {
 			console.error(err);
 			res.status(500).json({message: 'Internal server error'})
@@ -53,11 +53,11 @@ router.post('/', jsonParser, (req, res) => {
 			return res.status(400).send(message);
 		}
 	}
-	const item = Garden.create({
+	const item = Workout.create({
 		user: req.body.user,
 		name: req.body.name, 
 		startDate: req.body.startDate,
-		harvestDate: req.body.harvestDate,
+		finishDate: req.body.harvestDate,
 		comments: req.body.comments
 	});
 	res.status(201).json(item);
@@ -78,8 +78,8 @@ router.put('/:id', jsonParser, (req, res) => {
 		console.error(message);
 		return res.status(400).send(message);
 	}
-	console.log(`Updating garden item ${req.params.id}`);
-	Garden
+	console.log(`Updating workout item ${req.params.id}`);
+	Workout
 		.findByIdAndUpdate(req.params.id, {$set: req.body}, {new: true})
 		.exec()
 		.then(plant => res.status(200).json(plant))
@@ -89,7 +89,7 @@ router.put('/:id', jsonParser, (req, res) => {
 });
 
 router.delete('/:id', (req, res) => {
-	Garden
+	Workout
 		.findByIdAndRemove(req.params.id)
 		.exec()
 		.then(() => res.status(204).end())

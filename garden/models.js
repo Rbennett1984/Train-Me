@@ -1,13 +1,13 @@
 const mongoose = require('mongoose');
 
-const gardenSchema = mongoose.Schema({
+const wokroutSchema = mongoose.Schema({
 	user: {type: String, required: true},
 	name: {type: String, required: true},
 	startDate: {type: String, required: true},
-	harvestDate: {type: String},
+	finishDate: {type: String},
 	comments: {type: String}
 })
 
-const Garden = mongoose.model('Garden', gardenSchema)
+const Workout = mongoose.model('Workout', workoutSchema)
 
-module.exports = {Garden};
+module.exports = {Workout};

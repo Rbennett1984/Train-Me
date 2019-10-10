@@ -1,4 +1,4 @@
-const {Garden} = require('./models');
+const {Workout} = require('./models');
 const {router} = require('./router');
 
-module.exports = {Garden, router};
+module.exports = {Workout, router};

@@ -74,16 +74,16 @@ function showJournalResults(journalArray) {
 	})
 }
 
-function addPlant(plant) {
-	console.log('Adding plant' + plant);
+function addWorkout(plant) {
+	console.log('Adding workout' + workout);
 	let authToken = localStorage.getItem('authToken');
 	$.ajax({
 		method: 'POST',
-		url: GARDEN_URL,
+		url: WORKOUT_URL,
 		headers: {
 			Authorization: `Bearer ${authToken}`
 		},
-		data: JSON.stringify(plant),
+		data: JSON.stringify(workout),
 		success: function(data) {
 			getWorkout(data);
 		},
@@ -117,32 +117,32 @@ function addJournalEntry(journalPosts) {
 	});
 }
 
-function updatePlantForm(id, element) {
+function updateWorkoutForm(id, element) {
 	let authToken = localStorage.getItem('authToken');
 	$.ajax({
 		method: 'GET',
-		url: `${GARDEN_URL}/${id}`,
+		url: `${WORKOUT_URL}/${id}`,
 		headers: {
 			Authorization: `Bearer ${authToken}`
 		},
 		contentType: 'application/json',
-		success: function(plantData) {
-			console.log(plantData);
+		success: function(workoutData) {
+			console.log(workoutData);
 
 			let updateTemplate = `
-				<form class="row updatePlantSection" data-id=${id}>
-					<h2>Update plant record</h2><br>
-					<label for="updatePlantName">Plant:</label>
-					<input type="text" name="updatePlantName" class="updatePlantName" value=${plantData.name}>
+				<form class="row updateWorkoutSection" data-id=${id}>
+					<h2>Update training record</h2><br>
+					<label for="updateWorkoutName">Workout:</label>
+					<input type="text" name="updateWorkoutName" class="updateWorkoutName" value=${workoutData.name}>
 					<label for="updateStartDate">Start Date:</label>
-					<input type="text" name="updateStartDate" class="updateStartDate" value=${plantData.startDate}>
-					<label for="updateHarvestDate">Harvest Date:</label>
-					<input type="text" name="updateHarvestDate" class="updateHarvestDate" value=${plantData.harvestDate}>
+					<input type="text" name="updateStartDate" class="updateStartDate" value=${workoutData.startDate}>
+					<label for="updateHarvestDate">Finish Date:</label>
+					<input type="text" name="updateFinishDate" class="updateFinishDate" value=${workoutData.finishDate}>
 					<label for="updateComments">Comments:</label>
-					<input type="text" name="updateComments" class="updateComments" value=${plantData.comments}>
-					<button type="submit" id="updatePlantInfo" class="homePageButtons">Update it!</button>
+					<input type="text" name="updateComments" class="updateComments" value=${workoutData.comments}>
+					<button type="submit" id="updateWorkoutInfo" class="homePageButtons">Update it!</button>
 				</form>`
-			$(element).find(".plantInfo").hide();
+			$(element).find(".workoutInfo").hide();
 			$(element).after(updateTemplate);
 		}
 	});
@@ -172,20 +172,20 @@ function updateJournalForm(id, element) {
 	});
 }	
 
-function updatePlant(id, plant) {
-	console.log(`Updating plant ${id}`);
+function updateWorkout(id, workout) {
+	console.log(`Updating workout ${id}`);
 	let authToken = localStorage.getItem('authToken');
 	$.ajax({
-		url: GARDEN_URL + '/' + id,
+		url: WORKOUT_URL + '/' + id,
 		headers: {
 			Authorization: `Bearer ${authToken}`
 		},
 		method: 'PUT',
 		dateType: 'json',
 		contentType: 'application/json',
-		data: JSON.stringify(plant),
+		data: JSON.stringify(workout),
 		success: function(data) {
-			getGarden(data);
+			getWorkout(data);
 		},
 		error: function(err) {
 			console.log(err);
@@ -214,11 +214,11 @@ function updateJournal(id, journalPosts) {
 	});
 }
 
-function deletePlant(id) {
-	console.log(`Deleting plant ${id}`);
+function deleteWorkout(id) {
+	console.log(`Deleting workout ${id}`);
 	let authToken = localStorage.getItem('authToken');
 	$.ajax({
-		url: GARDEN_URL + '/' + id,
+		url: WORKOUT_URL + '/' + id,
 		headers: {
 			Authorization: `Bearer ${authToken}`
 		},
@@ -250,21 +250,21 @@ function deleteJournalEntry(id) {
 	});
 }
 
-function handlePlantAdd() {
-	$('#addPlantSection').submit(function(e) {
+function handleWorkoutAdd() {
+	$('#addWorkoutSection').submit(function(e) {
 	    e.preventDefault();
-	    addPlant({
+	    addWorkout({
 	    	user: user,
-	    	name: $(e.currentTarget).find('#addPlantName').val(),
+	    	name: $(e.currentTarget).find('#addWorkoutName').val(),
 	    	startDate: $(e.currentTarget).find('#addStartDate').val(),
-	    	harvestDate: $(e.currentTarget).find('#addHarvestDate').val(),
+	    	finishDate: $(e.currentTarget).find('#addFinishDate').val(),
 	    	comments: $(e.currentTarget).find('#addComments').val()
 	    });
-	    $("#addPlantSection input[type='text']").val('');
-	    $(".updatePlantSection").hide();
-		$("#addPlantSection").hide();
-		$("#cancel-add-plant").hide();
-		$(".plantListSection").show();
+	    $("#addWorkoutSection input[type='text']").val('');
+	    $(".updateWorkoutSection").hide();
+		$("#addWorkoutSection").hide();
+		$("#cancel-add-workout").hide();
+		$(".workoutListSection").show();
   });
 }
 
@@ -284,20 +284,20 @@ function handleJournalAdd() {
 	})
 }
 
-function handlePlantUpdate() {
-	$('#updatePlantInfo').on('click', function(e) {
-		console.log('you updated your plant!');
+function handleWorkoutUpdate() {
+	$('#updateWorkoutInfo').on('click', function(e) {
+		console.log('you updated your workout!');
 		e.preventDefault();
-		updatePlant({
+		updateWorkout({
 			user: user,
-			name: $(e.currentTarget).find('.updatePlantName').val(),
+			name: $(e.currentTarget).find('.updateWorkoutName').val(),
 			startDate: $(e.currentTarget).find('.updateStartDate').val(),
-			harvestDate: $(e.currentTarget).find('.updateHarvestDate').val(),
+			FinishDate: $(e.currentTarget).find('.updateFinishDate').val(),
 			comments: $(e.currentTarget).find('.updateComments').val(),
 		});
-		$(".updatePlantSection").hide();
-		$("#addPlantSection").hide();
-		$("#plantListSection").show();
+		$(".updateWorkoutSection").hide();
+		$("#addWorkoutSection").hide();
+		$("#workoutListSection").show();
 	});
 }
 
@@ -316,11 +316,11 @@ function handleJournalUpdate() {
 	})
 }
 
-function handlePlantDelete() {
-	$('.plantListSection').on('click', '.deletePlant', function(e) {
+function handleWorkoutDelete() {
+	$('.workoutListSection').on('click', '.deleteWorkout', function(e) {
 		e.preventDefault();
-		deletePlant(
-			$(e.currentTarget).closest('.plantItem').attr('data-id'));
+		deleteWorkout(
+			$(e.currentTarget).closest('.WorkoutItem').attr('data-id'));
 	});
 }
 
@@ -381,7 +381,7 @@ $(document).ready(function() {
 				$(".detail-section").hide();
 				$(".home").show();
 				$(".logout").show();
-				$(".gardenDetails").show();
+				$(".workoutDetails").show();
 				console.log(data);
 				getGarden(data);
 				getJournal(data);
@@ -429,14 +429,14 @@ $(document).ready(function() {
 		$.ajax(settings);
 	})
 
-	$(".updatePlantSection").hide();
-	$("#addPlantSection").hide();
-	$(".plantListSection").show();
+	$(".updateWorkoutSection").hide();
+	$("#addWorkoutSection").hide();
+	$(".workoutListSection").show();
 
-	$("body").on("click", ".plantName", function() {
-		console.log("you clicked the plant name");
+	$("body").on("click", ".workoutName", function() {
+		console.log("you clicked the workout name");
 		event.preventDefault();
-		$(this).parent().find(".plantInfo").slideToggle(300);
+		$(this).parent().find(".workoutInfo").slideToggle(300);
 	});
 
 	$("body").on("click", ".journalDateAndTime", function() {
@@ -445,12 +445,12 @@ $(document).ready(function() {
 		$(this).parent().find(".journalInfo").slideToggle(300);
 	})
 
-	$("body").on("click", ".updatePlant", function() {
+	$("body").on("click", ".updateWorkout", function() {
 		console.log('you clicked update!!');
-		let plant = $(this).parent().parent();
+		let workout = $(this).parent().parent();
 		let id = $(this).parent().parent().attr("data-id");
 		console.log(id);
-		updatePlantForm(id, plant);
+		updateWorkoutForm(id, workout);
 	})
 
 	$("body").on("click", ".updateJournal", function() {
@@ -462,19 +462,19 @@ $(document).ready(function() {
 		updateJournalForm(id, journalEntry);
 	})
 
-	$("body").on("submit", ".updatePlantSection", function(e) {
+	$("body").on("submit", ".updateWorkoutSection", function(e) {
 		e.preventDefault();
 		let id = $(this).attr("data-id")
-		console.log(`you submitted updatePlantSection for ${id}`);
-		let updatedPlant = {
+		console.log(`you submitted updateWorkoutSection for ${id}`);
+		let updatedWorkout = {
 			id: id,
-			name: $('.updatePlantName').val(),
+			name: $('.updateWorkoutName').val(),
 			startDate: $('.updateStartDate').val(),
-			harvestDate: $('.updateHarvestDate').val(),
+			finishDate: $('.updateFinishDate').val(),
 			comments: $('.updateComments').val(),
 		}
-		updatePlant(id, updatedPlant);
-		console.log("plant updated")
+		updateWorkout(id, updatedWorkout);
+		console.log("workout updated")
 	})
 
 	$("body").on("submit", ".updateJournalSection", function(e) {
@@ -490,17 +490,17 @@ $(document).ready(function() {
 		console.log("journal updated")
 	})
 
-	$("#cancel-add-plant").click(function() {
-		$("#addPlantSection input[type='text']").val('');
-		$("#addPlantSection").hide();
-		$("#cancel-add-plant").hide();
+	$("#cancel-add-workout").click(function() {
+		$("#addWorkoutSection input[type='text']").val('');
+		$("#addWorkoutSection").hide();
+		$("#cancel-add-workout").hide();
 	})
 
-	$("#add-plant").click(function() {
-		$(".updatePlantSection").hide();
-		$("#cancel-add-plant").show();
-		$("#plantListSection").show();
-		$("#addPlantSection").show();
+	$("#add-workout").click(function() {
+		$(".updateWorkoutSection").hide();
+		$("#cancel-add-workout").show();
+		$("#workoutListSection").show();
+		$("#addWorkoutSection").show();
 	})
 
 	$("#cancel-journal-entry").click(function() {
@@ -522,11 +522,12 @@ $(document).ready(function() {
 	});
 
 	$(function() {
-		handlePlantAdd();
+		handleWorkoutAdd();
 		handleJournalAdd();
-		handlePlantUpdate();
+		handleWorkoutUpdate();
 		handleJournalUpdate();
-		handlePlantDelete();
+		handleWorkoutDelete();
 		handleJournalDelete();
 	});
 })
+plant
