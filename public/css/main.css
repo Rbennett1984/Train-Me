@@ -106,7 +106,7 @@ footer {
 
 .login-section {
 	color: #F9F9F9;
-	background-image: url("../images/vegetable-basket1-min.jpg");
+	background-image: url("https://images.pexels.com/photos/903171/pexels-photo-903171.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260");
 	padding-top: 10rem;
 	padding-bottom: 10rem;
 }
@@ -114,11 +114,13 @@ footer {
 .login-section h2 {
 	font-size: 4rem;
 	padding-bottom: 1rem;
+	color: slategray;
 }
 
 .login-section p {
 	font-size: 1.5rem;
 	padding-bottom: 1rem;
+	color: slategray;
 }
 
 .login-section button {
@@ -148,7 +150,7 @@ footer {
 	border-radius: 50%;
 }
 
-.fa-envira {
+.fa-calendar {
 	color: #0E8358;
 }
 
@@ -214,20 +216,20 @@ footer {
 	font-weight: 600;
 }
 
-/***** GARDEN SECTION *****/
+/***** WORKOUT SECTION *****/
 
-.gardenDetails {
+.sessionDetails {
 	margin-top: 1rem;
 	height: 100%;
 }
 
-.gardenDetails h2 {
+.sessionDetails h2 {
 	display: inline-block;
 	font-size: 1.8rem;
 	margin-top: 1rem;
 }
 
-.plantColumn,
+.workoutColumn,
 .journalColumn {
 	border-radius: 5px;
 	margin-top: 1rem;
@@ -240,47 +242,47 @@ footer {
 	box-shadow: 2px 2px grey;
 }
 
-.plantColumn {
+.workoutColumn {
 	margin-right: 1rem;
 	background-color: ;
 }
 
-.plantItem, {
+.workoutItem, {
 	margin-top: 1rem;
 	font-size: 1.2rem;
 	width: 100%;
 }
 
-.plantName,
+.workoutName,
 .journalDateAndTime {
 	height: 2.5rem;
 	vertical-align: middle;
 	font-size: 1.6rem;
 }
 
-.plantName:hover,
+.workoutName:hover,
 .journalDateAndTime:hover {
 	cursor: pointer;
 }
 
-.plantInfo,
+.workoutInfo,
 .journalInfo {
 	padding-top: 1rem;
 	border-top: 1px solid #0E8358;
 }
 
-.plantInfo button,
+.workoutInfo button,
 .journalItem button {
 	margin-top: 1rem;
 }
 
-#addPlantSection,
+#addWorkoutSection,
 #addJournalSection {
 	margin-top: 1.5rem;
 	margin-left: 0;
 }
 
-#add-plant,
+#add-workout,
 #add-journal-entry {
 	display: inline-block;
 	margin: 1rem;
@@ -294,7 +296,7 @@ footer {
 	background-color: #65B094;
 }
 
-#updatePlantSection {
+#updateWorkoutSection {
 	margin-top: 1rem;
 	margin-left: 0;
 }
@@ -311,7 +313,7 @@ footer {
 	margin-bottom: 1rem;
 }
 
-.updatePlant,
+.updateWorkout,
 .updateJournal {
 	margin-right: 1rem;
 	display: inline-block;
@@ -322,7 +324,7 @@ footer {
 	margin-bottom: 1rem;
 }
 
-.deletePlant,
+.deleteWorkout,
 .deleteJournal {
 	display: inline-block;
 	margin-bottom: 1rem
@@ -342,7 +344,7 @@ footer {
 /***** MEDIA QUERIES *****/
 
 @media only screen and (max-width: 568px) {
-	.plantItem {
+	.workoutItem {
 		width: 100%;
 	}
 }

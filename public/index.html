@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<meta name="description" content="Garden planning app to track current and future gardens">
+	<meta name="description" content="Training app to track current and future workouts">
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Garden Planner</title>
+	<title>Personal Training Planner</title>
 	<link href="https://fonts.googleapis.com/css?family=Montserrat:400,600" rel="stylesheet">
 	<script src="https://use.fontawesome.com/5cc30cf6d4.js"></script>
 	<link rel="stylesheet" href="css/normalize.css">
@@ -16,29 +16,29 @@
 <body>
 	<div class="content">
 		<header class="row">
-			<h1 class="col-9">GardenPlanner</h1>
+			<h1 class="col-9">WorkoutPlanner</h1>
 			<a href="index.html" class="col-3 logout" style="display:none">Logout</a>
 		</header>
 
 		<section class="login-section">
-			<h2>Love to garden?</h2>
-			<p>Keep track of your growing season!</p>
+			<h2>Ready to Train?</h2>
+			<p>Keep track of your training season!</p>
 			<button type="submit" id="login-button">Log In</button>
 			<button type="submit" id="register-button">Register</button>
 		</section>
 
 		<section class="row detail-section">
 			<div class="col-4">
-				<i class="fa fa-envira"></i>
-				<p>Add your plants</p>
+				<i class="fa fa-calendar" aria-hidden="true"></i>
+				<p>Build your Program</p>
 			</div>
 			<div class="col-4">
 				<i class="fa fa-sun-o"></i>
-				<p>Track growth from start to harvest!</p>
+				<p>Track progress from start to finish</p>
 			</div>
 			<div class="col-4">
 				<i class="fa fa-pencil"></i>
-				<p>Journal your favorite tips and tricks!</p>
+				<p>Journal your thoughts, feelings, and experiences</p>
 			</div>
 		</section>
 
@@ -73,29 +73,29 @@
 		</section>
 
 		<section class="row home" style="display:none">
-			<h2>Hello <span id="showName"></span>, look what you have growing today!</h2>
+			<h2>Hello <span id="showName"></span>, look what you have growing on today!</h2>
 		</section>
 
-		<section class="row gardenDetails" style="display:none">
-			<div class="col-6 plantColumn">
-				<h2>Garden</h2>
-				<button type="submit" id="add-plant" class="homePageButtons">Add a plant</button>
-				<button type="submit" id="cancel-add-plant" class="homePageButtons" style="display:none">Cancel</button>
+		<section class="row workoutDetails" style="display:none">
+			<div class="col-6 workoutColumn">
+				<h2>Build Your Workout</h2>
+				<button type="submit" id="add-workout" class="homePageButtons">Add a session</button>
+				<button type="submit" id="cancel-add-workout" class="homePageButtons" style="display:none">Cancel</button>
 
 				<form id="addPlantSection" style="display:none" class="row">
 					<h3>What do you want to add?</h3>
-					<label for="addPlantName">Plant:</label>
-					<input type="text" name="addPlantName" id="addPlantName" placeholder="Tomato" required>
-					<label for="addStartDate">Start Date:</label>
+					<label for="addWorkoutName">Session:</label>
+					<input type="text" name="addWorkoutName" id="addWorkoutName" placeholder="Tempo Run" required>
+					<label for="addStartDate">Session Time:</label>
 					<input type="text" name="addStartDate" id="addStartDate" placeholder="mm/dd/yyyy" required>
-					<label for="addHarvestDate">Harvest Date:</label>
-					<input type="text" name="addHarvestDate" id="addHarvestDate" placeholder="mm/dd/yyyy">
+					<label for="addHarvestDate">Finish Time:</label>
+					<input type="text" name="addFinishDate" id="addFinishDate" placeholder="mm/dd/yyyy">
 					<label for="addComments">Comments:</label>
-					<input type="text" name="addComments" id="addComments" placeholder="Full Sun">
-					<button type="submit" id="addPlantInfo" class="homePageButtons">Add it!</button>
+					<input type="text" name="addComments" id="addComments" placeholder="Intervals">
+					<button type="submit" id="addWorkoutInfo" class="homePageButtons">Add it!</button>
 				</form>
 
-				<div class="plantListSection"></div>
+				<div class="workoutListSection"></div>
 			</div>
 
 			<div class="col-6 journalColumn">
@@ -115,7 +115,7 @@
 	</div>
 
 	<footer class="row">
-		<p>&copy Nicole Bradford</p>
+		<p>&copy Rachel Bennett</p>
 		<p>Favicon made by <a href="http://www.freepik.com/">Freepik</a> from <a href="www.flaticon.com">www.flaticon.com</a></p>
 	</footer>
 

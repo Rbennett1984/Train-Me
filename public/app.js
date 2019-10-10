@@ -1,21 +1,21 @@
-let GARDEN_URL = 'garden';
+let WORKOUT_URL = 'workout';
 let JOURNAL_URL = 'journal';
 let user = localStorage.getItem('currentUser');
 let date = new Date();
 
-function getGarden() {
-	console.log('Getting garden info')
+function getWorkout() {
+	console.log('Getting workout info')
 	let authToken = localStorage.getItem('authToken');
 	$.ajax({
 		method: 'GET',
-		url: `${GARDEN_URL}/user/${user}`,
+		url: `${WORKOUT_URL}/user/${user}`,
 		headers: {
 			Authorization: `Bearer ${authToken}`
 		},
 		contentType: 'application/json',
 		success: function(userData) {
 			console.log(userData);
-			showGardenResults(userData);
+			showWorkoutResults(userData);
 		}
 	});
 }
@@ -37,23 +37,23 @@ function getJournal() {
 	});
 }
 
-function showGardenResults(plantArray) {
+function showWorkoutResults(workoutArray) {
 	$('#showName').html(user);
-	let buildPlantList = "";
+	let buildWorkoutList = "";
 
-	$.each(plantArray, function (plantArrayKey, plantArrayValue) {
-		buildPlantList += `<div class="plantItem" data-id=${plantArrayValue._id}>` 
-		buildPlantList += `<p class="plantName">${plantArrayValue.name}</p>`
-		buildPlantList += `<div class="plantInfo" style="display:none">` 
-		buildPlantList += `<p class="startDate">Started: ${plantArrayValue.startDate}</p>` 
-		buildPlantList += `<p class="harvestDate">Harvest: ${plantArrayValue.harvestDate}</p>` 
-		buildPlantList += `<p class="plantComments">Comments: ${plantArrayValue.comments}</p>` 
-		buildPlantList += `<button type="submit" class="updatePlant homePageButtons">Update</button>`
-		buildPlantList += `<button type="submit" class="deletePlant homePageButtons">Delete</button>`
-		buildPlantList += `</div>` 
-		buildPlantList += `</div>`
+	$.each(workoutArray, function (workoutArrayKey, workoutArrayValue) {
+		buildWorkoutList += `<div class="workoutItem" data-id=${workoutArrayValue._id}>` 
+		buildWorkoutList += `<p class="workoutName">${workoutArrayValue.name}</p>`
+		buildWorkoutList += `<div class="workoutInfo" style="display:none">` 
+		buildWorkoutList += `<p class="startDate">Started: ${workoutArrayValue.startDate}</p>` 
+		buildWorkoutList += `<p class="finshDate">Finished: ${workouttArrayValue.harvestDate}</p>` 
+		buildWorkoutList+= `<p class="workoutComments">Comments: ${workoutArrayValue.comments}</p>` 
+		buildWorkoutList += `<button type="submit" class="updateWorkout homePageButtons">Update</button>`
+		buildWorkoutList += `<button type="submit" class="deleteWorkout homePageButtons">Delete</button>`
+		buildWorkoutList += `</div>` 
+		buildWorkoutList += `</div>`
 		
-		$('.plantListSection').html(buildPlantList);
+		$('.workoutListSection').html(buildWorkoutList);
 	});
 }
 
@@ -85,7 +85,7 @@ function addPlant(plant) {
 		},
 		data: JSON.stringify(plant),
 		success: function(data) {
-			getGarden(data);
+			getWorkout(data);
 		},
 		error: function(err) {
 			console.log(err);
@@ -224,7 +224,7 @@ function deletePlant(id) {
 		},
 		method: 'DELETE',
 		success: function(data) {
-			getGarden(data);
+			getWorkout(data);
 		},
 		error: function(err) {
 			console.log(err);
