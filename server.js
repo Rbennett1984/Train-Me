@@ -9,7 +9,7 @@ const passport = require('passport');
 // add const for router
 const {router: usersRouter} = require('./users');
 const {router: authRouter, localStrategy, jwtStrategy} = require('./auth');
-const {router: gardenRouter} = require('./garden');
+const {router: workoutRouter} = require('./workout');
 const {router: journalRouter} = require('./journal');
 // mongoose.Promise = global.Promise;
 
@@ -44,7 +44,7 @@ passport.use(jwtStrategy);
 
 app.use('/users/', usersRouter);
 app.use('/auth/', authRouter);
-app.use('/garden/', gardenRouter);
+app.use('/workout/', workoutRouter);
 app.use('/journal/', journalRouter);
 
 // use this to protect the /api/auth/login endpoint defined 
