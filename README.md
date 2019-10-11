@@ -1,4 +1,4 @@
-<h1>GardenPlanner</h1>
+<h1>TrainMe</h1>
 
 <p><a href="https://www.thinkful.com/">Thinkful</a> Node Capstone Project - Full stack capstone app integrating FEWD with <a href="https://nodejs.org/en/">Node.js</a> server-side development/CRUD operations</p>
 
@@ -20,7 +20,7 @@
 <h2>Functionality</h2>
 <p>This app's functionality includes:</p>
 <ul>
-	<li>Add a plant with start date, harvest date, and a comment</li>
+	<li>Build and schedule training sessions and goals with start date, finish date, and a comment</li>
 	<li>Add a journal entry</li>
 	<li>Display a user's plant and journal information</li>
 	<li>Update a user's plant and journal information</li>
@@ -65,8 +65,8 @@
 <h2>Development</h2>
 <p>Future updates are expected to include:</p>
 <ul>
-	<li>Add third-party API to get user's growing zone</li>
-	<li>Add diagram for garden layouts</li>
+	<li>Add third-party API to search outdoor spaces</li>
+	<li>Add shared blog where users can interact with one another</li>
 </ul>
 
 
